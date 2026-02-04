@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
@@ -17,17 +17,49 @@
 
   
 
-  <form id="musicForm">
-    <input type="text" id="genre" placeholder="Genre" required>
-    <input type="text" id="artist" placeholder="Artist" required>
-    <input type="text" id="song" placeholder="Song title" required>
+        <form id="playlistForm">
+          <label>Spellistans namn</label>
+          <input
+            id="playlistName"
+            type="text"
+            placeholder="t.ex. Workout Mix"
+            required
+          />
 
-    <button type="submit">Add Song</button>
-  </form>
+          <label>Genre</label>
+          <input id="genre" type="text" placeholder="t.ex. Pop" required />
 
-  <h2>Playlist</h2>
-  <div id="playlist"></div>
+          <label>Artist</label>
+          <input
+            id="artist"
+            type="text"
+            placeholder="t.ex. The Weeknd"
+            required
+          />
 
-  <script type="module" src="js/app.js"></script>
-</body>
+          <label>Låt (titel)</label>
+          <input
+            id="songTitle"
+            type="text"
+            placeholder="t.ex. Blinding Lights"
+            required
+          />
+
+          <button type="submit">➕ Lägg till</button>
+          <button id="resetBtn" type="button" class="secondary">
+            Återställ demo-data
+          </button>
+        </form>
+
+        <div id="message" class="message"></div>
+      </section>
+
+      <section class="card">
+        <h2>Alla spellistor</h2>
+        <div id="playlistList"></div>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
 </html>
