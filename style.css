@@ -1,0 +1,15 @@
+* { box-sizing: border-box; }
+body { font-family: Arial, sans-serif; margin: 0; background:#f6f7fb; color:#111; }
+.container { max-width: 1000px; margin: 0 auto; padding: 18px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.card { background:white; padding:18px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+label { display:block; margin-top:10px; font-size: 14px; }
+input { width:100%; padding:10px; margin-top:6px; border:1px solid #ddd; border-radius:10px; }
+button { margin-top: 12px; padding:10px 12px; border:0; border-radius: 10px; cursor:pointer; }
+button.secondary { background:#eaeaea; margin-left: 8px; }
+button:not(.secondary){ background:#111; color:white; }
+.message { margin-top: 12px; font-size: 14px; }
+.playlist { padding: 12px; border:1px solid #eee; border-radius: 12px; margin-bottom: 12px; }
+.meta { color:#666; font-size: 13px; margin-top: 6px; }
+ul { margin: 8px 0 0 16px; }
+@media (max-width: 850px){ .grid{ grid-template-columns: 1fr; } }
