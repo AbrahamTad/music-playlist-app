@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <title>Music Playlist App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🎵 Music Playlist App</h1>
+  <p>Skapa och lista musik grupperad som <b>Genre → Artist → Låtar</b></p>
+  <button id="themeToggle" class="toggle-btn">
+    🌙 Dark Mode
+  </button>
+
+  </header>
+
+  
+
+        <form id="playlistForm">
+          <label>Spellistans namn</label>
+          <input
+            id="playlistName"
+            type="text"
+            placeholder="t.ex. Workout Mix"
+            required
+          />
+
+          <label>Genre</label>
+          <input id="genre" type="text" placeholder="t.ex. Pop" required />
+
+          <label>Artist</label>
+          <input
+            id="artist"
+            type="text"
+            placeholder="t.ex. The Weeknd"
+            required
+          />
+
+          <label>Låt (titel)</label>
+          <input
+            id="songTitle"
+            type="text"
+            placeholder="t.ex. Blinding Lights"
+            required
+          />
+
+          <button type="submit">➕ Lägg till</button>
+          <button id="resetBtn" type="button" class="secondary">
+            Återställ demo-data
+          </button>
+        </form>
+
+        <div id="message" class="message"></div>
+      </section>
+
+      <section class="card">
+        <h2>Alla spellistor</h2>
+        <div id="playlistList"></div>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
