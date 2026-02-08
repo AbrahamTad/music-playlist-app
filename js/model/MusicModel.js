@@ -9,3 +9,10 @@ export default class MusicModel {
   }
 }
 
+let genreObj = playlist.genres.find((g) => g.name === genre);
+if (!genreObj) {
+  genreObj = { name: genre, artists: [] };
+  playlist.genres.push(genreObj);
+}
+
+
