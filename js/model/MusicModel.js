@@ -1,7 +1,11 @@
-// MusicModel.js
 export default class MusicModel {
   constructor() {
-    this.playlists = [];
+    try {
+      const saved = localStorage.getItem("playlists");
+      this.playlists = saved ? JSON.parse(saved) : [];
+    } catch {
+      this.playlists = [];
+    }
   }
 
   save() {
@@ -28,6 +32,26 @@ export default class MusicModel {
     }
 
     artistObj.songs.push(song);
+    this.save();
+  }
+
+  removeSong(playlistName, genre, artist, song) {
+    const playlist = this.playlists.find((p) => p.name === playlistName);
+    if (!playlist) return;
+
+    const genreObj = playlist.genres.find((g) => g.name === genre);
+    if (!genreObj) return;
+
+    const artistObj = genreObj.artists.find((a) => a.name === artist);
+    if (!artistObj) return;
+
+    artistObj.songs = artistObj.songs.filter((s) => s !== song);
+
+    // cleanup empty structures
+    genreObj.artists = genreObj.artists.filter((a) => a.songs.length);
+    playlist.genres = playlist.genres.filter((g) => g.artists.length);
+    this.playlists = this.playlists.filter((p) => p.genres.length);
+
     this.save();
   }
 
