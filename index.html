@@ -3,21 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <title>Spellistor</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h2>Skapa spellista</h2>
+<div class="page">
 
-<form id="playlistForm">
-  <input id="playlistName" placeholder="Spellista" required>
-  <input id="genre" placeholder="Genre" required>
-  <input id="artist" placeholder="Artist" required>
-  <input id="song" placeholder="Låt" required>
-  <button>Lägg till</button>
-</form>
+  <header class="page-header">
+    <h1> Spellistor</h1>
+    <p>Skapa och visa musik grupperad efter <b>Genre → Artist → Låtar</b></p>
+  </header>
 
-<h2>Alla spellistor</h2>
-<div id="playlistContainer"></div>
+  <main class="layout">
+
+    <!-- LEFT PANEL -->
+    <section class="card">
+      <h2>Skapa ny spellista</h2>
+
+      <form id="playlistForm">
+        <label>Spellistans namn</label>
+        <input id="playlistName" placeholder=" Träningsmix" required>
+
+        <label>Genre</label>
+        <input id="genre" placeholder=" Pop" required>
+
+        <label>Artist</label>
+        <input id="artist" placeholder="The Weeknd" required>
+
+        <label>Låt (titel)</label>
+        <input id="song" placeholder=" Blinding Lights" required>
+
+        <div class="form-buttons">
+          <button class="add-btn">+ Lägg till</button>
+          <button type="button" id="demoBtn" class="demo-btn">Återställ demo-data</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- RIGHT PANEL -->
+    <section class="card">
+      <h2>Alla spellistor</h2>
+      <div id="playlistContainer"></div>
+    </section>
+
+  </main>
+
+</div>
 
 <script type="module" src="js/app.js"></script>
 </body>

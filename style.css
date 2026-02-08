@@ -1,0 +1,238 @@
+* {
+  box-sizing: border-box;
+}
+
+/* ===== MODERN BACKGROUND ===== */
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  margin: 0;
+  padding: 40px;
+  color: #111;
+
+  background: linear-gradient(
+    135deg,
+    #eef2ff 0%,
+    #f8fafc 40%,
+    #f1f5ff 70%,
+    #e0e7ff 100%
+  );
+
+  min-height: 100vh;
+}
+
+/* PAGE WIDTH FIX */
+.page {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* HEADER */
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  font-size: 40px;
+  margin: 0;
+}
+
+.page-header p {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+/* LAYOUT */
+.layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+/* ===== GLASS CARDS ===== */
+.card {
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  padding: 30px;
+  border-radius: 20px;
+  min-height: 450px;
+  min-width: 0;
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+/* FORM */
+form label {
+  display: block;
+  margin-top: 18px;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+/* ===== MODERN INPUTS ===== */
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  font-size: 14px;
+  background: rgba(255,255,255,0.85);
+  transition: 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+}
+
+/* BUTTONS */
+.form-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.add-btn {
+  background: #111827;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.demo-btn {
+  background: rgba(0,0,0,0.06);
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+/* hover effect */
+button {
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+/* PLAYLIST DISPLAY */
+#playlistContainer {
+  min-height: 200px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* empty state */
+.empty {
+  opacity: 0.6;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ===== PLAYLIST CARD ===== */
+.playlist-card {
+  background: rgba(255,255,255,0.9);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.25s;
+}
+
+.playlist-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12);
+}
+
+.playlist-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* genre badge */
+.genre-badge {
+  display: inline-block;
+  background: #eef2ff;
+  color: #3b5bdb;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+/* artist */
+.artist-name {
+  font-style: italic;
+  margin: 6px 0;
+  color: #444;
+}
+
+/* song row */
+.song-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f7f8ff;
+  padding: 8px 12px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  transition: 0.2s;
+}
+
+.song-row:hover {
+  background: #e9edff;
+}
+
+/* buttons */
+.song-actions button {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.edit-btn {
+  background: #ffd166;
+}
+
+.delete-btn {
+  background: #ef476f;
+  color: white;
+}
+
+/* collapse feature */
+.clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.playlist-content {
+  overflow: hidden;
+  transition: 0.25s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
