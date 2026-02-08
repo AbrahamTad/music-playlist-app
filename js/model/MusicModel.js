@@ -8,3 +8,4 @@ export default class MusicModel {
     return this.playlists;
   }
 }
+
