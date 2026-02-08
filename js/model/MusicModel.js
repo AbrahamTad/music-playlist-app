@@ -15,4 +15,10 @@ if (!genreObj) {
   playlist.genres.push(genreObj);
 }
 
+let artistObj = genreObj.artists.find((a) => a.name === artist);
+if (!artistObj) {
+  artistObj = { name: artist, songs: [] };
+  genreObj.artists.push(artistObj);
+}
 
+artistObj.songs.push(song);
