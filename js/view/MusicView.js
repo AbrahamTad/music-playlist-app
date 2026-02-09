@@ -4,4 +4,11 @@ export default class MusicView {
     // container where playlists will be rendered
     this.container = document.getElementById("playlistContainer");
   }
+
+  //add render method to display playlists
+  render(playlists) {
+    if (!playlists || playlists.length === 0) {
+      this.container.innerHTML = "<p>No playlists yet</p>";
+    }
+  }
 }
