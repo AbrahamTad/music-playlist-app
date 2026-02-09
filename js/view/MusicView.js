@@ -1,11 +1,11 @@
-// View handles display data to the UI
+// MusicView.js
+
 export default class MusicView {
   constructor() {
-    // container where playlists will be rendered
-    this.container = document.getElementById("playlistContainer");
+    this.listContainer = document.getElementById("playlistContainer");
   }
 
-  //add render method to display playlists
+  // Renderar alla spellistor, genrer, artister och låtar i DOM:en
   render(playlists) {
     if (!this.listContainer) return;
 
@@ -15,6 +15,7 @@ export default class MusicView {
     }
 
     this.listContainer.innerHTML = "";
+
     playlists.forEach((pl) => {
       const card = document.createElement("div");
       card.className = "playlist-card";

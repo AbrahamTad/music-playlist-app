@@ -58,4 +58,21 @@ export default class MusicModel {
   getPlaylists() {
     return this.playlists;
   }
+  updateSong(playlistName, genre, artist, oldSong, newSong) {
+  const playlist = this.playlists.find(p => p.name === playlistName);
+  if (!playlist) return;
+
+  const genreObj = playlist.genres.find(g => g.name === genre);
+  if (!genreObj) return;
+
+  const artistObj = genreObj.artists.find(a => a.name === artist);
+  if (!artistObj) return;
+
+  const index = artistObj.songs.indexOf(oldSong);
+  if (index === -1) return;
+
+  artistObj.songs[index] = newSong;
+  this.save();
+}
+
 }

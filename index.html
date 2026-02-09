@@ -2,6 +2,7 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spellistor</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -9,38 +10,46 @@
 
 <div class="page">
 
+  <!-- HEADER -->
   <header class="page-header">
-    <h1> Spellistor</h1>
+    <h1>Spellistor</h1>
     <p>Skapa och visa musik grupperad efter <b>Genre → Artist → Låtar</b></p>
   </header>
 
   <main class="layout">
 
-    <!-- LEFT PANEL -->
+    <!-- LEFT PANEL (FORM) -->
     <section class="card">
       <h2>Skapa ny spellista</h2>
 
       <form id="playlistForm">
-        <label>Spellistans namn</label>
-        <input id="playlistName" placeholder=" Träningsmix" required>
 
-        <label>Genre</label>
-        <input id="genre" placeholder=" Pop" required>
+        <label for="playlistName">Spellistans namn</label>
+        <input id="playlistName" placeholder="Träningsmix" required>
 
-        <label>Artist</label>
+        <label for="genre">Genre</label>
+        <input id="genre" placeholder="Pop" required>
+
+        <label for="artist">Artist</label>
         <input id="artist" placeholder="The Weeknd" required>
 
-        <label>Låt (titel)</label>
-        <input id="song" placeholder=" Blinding Lights" required>
+        <label for="song">Låt (titel)</label>
+        <input id="song" placeholder="Blinding Lights" required>
 
         <div class="form-buttons">
-          <button class="add-btn">+ Lägg till</button>
-          <button type="button" id="demoBtn" class="demo-btn">Återställ demo-data</button>
+          <!-- IMPORTANT: must be submit -->
+          <button type="submit" class="add-btn">+ Lägg till</button>
+
+          <!-- demo button -->
+          <button type="button" id="demoBtn" class="demo-btn">
+            Återställ demo-data
+          </button>
         </div>
+
       </form>
     </section>
 
-    <!-- RIGHT PANEL -->
+    <!-- RIGHT PANEL (PLAYLIST OUTPUT) -->
     <section class="card">
       <h2>Alla spellistor</h2>
       <div id="playlistContainer"></div>
@@ -50,6 +59,8 @@
 
 </div>
 
+<!-- APP ENTRY -->
 <script type="module" src="js/app.js"></script>
+
 </body>
 </html>
