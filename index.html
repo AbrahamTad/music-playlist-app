@@ -1,63 +1,66 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <title>Music Playlist App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spellistor</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>🎵 Music Playlist App</h1>
-  <p>Skapa och lista musik grupperad som <b>Genre → Artist → Låtar</b></p>
- 
 
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="page-header">
+    <h1>Spellistor</h1>
+    <p>Skapa och visa musik grupperad efter <b>Genre → Artist → Låtar</b></p>
   </header>
 
-  
+  <main class="layout">
 
-        <form id="playlistForm">
-          <label>Spellistans namn</label>
-          <input
-            id="playlistName"
-            type="text"
-            placeholder="t.ex. Workout Mix"
-            required
-          />
+    <!-- LEFT PANEL (FORM) -->
+    <section class="card">
+      <h2>Skapa ny spellista</h2>
 
-          <label>Genre</label>
-          <input id="genre" type="text" placeholder="t.ex. Pop" required />
+      <form id="playlistForm">
 
-          <label>Artist</label>
-          <input
-            id="artist"
-            type="text"
-            placeholder="t.ex. The Weeknd"
-            required
-          />
+        <label for="playlistName">Spellistans namn</label>
+        <input id="playlistName" placeholder="Träningsmix" required>
 
-          <label>Låt (titel)</label>
-          <input
-            id="songTitle"
-            type="text"
-            placeholder="t.ex. Blinding Lights"
-            required
-          />
+        <label for="genre">Genre</label>
+        <input id="genre" placeholder="Pop" required>
 
-          <button type="submit">➕ Lägg till</button>
-          <button id="resetBtn" type="button" class="secondary">
+        <label for="artist">Artist</label>
+        <input id="artist" placeholder="The Weeknd" required>
+
+        <label for="song">Låt (titel)</label>
+        <input id="song" placeholder="Blinding Lights" required>
+
+        <div class="form-buttons">
+          <!-- IMPORTANT: must be submit -->
+          <button type="submit" class="add-btn">+ Lägg till</button>
+
+          <!-- demo button -->
+          <button type="button" id="demoBtn" class="demo-btn">
             Återställ demo-data
           </button>
-        </form>
+        </div>
 
-        <div id="message" class="message"></div>
-      </section>
+      </form>
+    </section>
 
-      <section class="card">
-        <h2>Alla spellistor</h2>
-        <div id="playlistList"></div>
-      </section>
-    </main>
+    <!-- RIGHT PANEL (PLAYLIST OUTPUT) -->
+    <section class="card">
+      <h2>Alla spellistor</h2>
+      <div id="playlistContainer"></div>
+    </section>
 
-    <script type="module" src="app.js"></script>
-  </body>
+  </main>
+
+</div>
+
+<!-- APP ENTRY -->
+<script type="module" src="js/app.js"></script>
+
+</body>
 </html>
