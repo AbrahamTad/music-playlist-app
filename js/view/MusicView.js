@@ -9,6 +9,15 @@ export default class MusicView {
   render(playlists) {
     if (!playlists || playlists.length === 0) {
       this.container.innerHTML = "<p>No playlists yet</p>";
+      return;
     }
+
+    let html = "";
+
+    playlists.forEach((p) => {
+      html += `<h2>${p.name}</h2>`;
+    });
+
+    this.container.innerHTML = html;
   }
 }
