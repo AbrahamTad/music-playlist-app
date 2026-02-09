@@ -16,81 +16,67 @@ export default class MusicView {
 
     this.listContainer.innerHTML = "";
 
-    playlists.forEach((pl) => {
-      const card = document.createElement("div");
-      card.className = "playlist-card";
+   this.listContainer.innerHTML = playlists
+     .map(
+       (pl) => `
+  <div class="playlist-card">
+    <h3 class="playlist-title clickable">▼ ${pl.name}</h3>
 
-      const title = document.createElement("h3");
-      title.className = "playlist-title clickable";
-      title.textContent = "▼ " + pl.name;
-      card.appendChild(title);
+    <div class="playlist-content">
+      ${pl.genres
+        .map(
+          (g) => `
+        <div class="genre-section">
+          <span class="genre-badge">${g.name}</span>
 
-      const content = document.createElement("div");
-      content.className = "playlist-content";
-      card.appendChild(content);
+          ${g.artists
+            .map(
+              (a) => `
+            <div class="artist-block">
+              <div class="artist-name">${a.name}</div>
 
-      title.addEventListener("click", () => {
-        content.classList.toggle("hidden");
-        title.textContent = content.classList.contains("hidden")
-          ? "▶ " + pl.name
-          : "▼ " + pl.name;
-      });
+              ${a.songs
+                .map(
+                  (song) => `
+                <div class="song-row">
+                  <span>🎵 ${song}</span>
 
-      pl.genres.forEach((g) => {
-        const genreSection = document.createElement("div");
-        genreSection.className = "genre-section";
+                  <div class="song-actions">
+                    <button class="edit-btn"
+                      data-playlist="${pl.name}"
+                      data-genre="${g.name}"
+                      data-artist="${a.name}"
+                      data-song="${song}">
+                      ✏️
+                    </button>
 
-        const badge = document.createElement("span");
-        badge.className = "genre-badge";
-        badge.textContent = g.name;
-        genreSection.appendChild(badge);
+                    <button class="delete-btn"
+                      data-playlist="${pl.name}"
+                      data-genre="${g.name}"
+                      data-artist="${a.name}"
+                      data-song="${song}">
+                      ❌
+                    </button>
+                  </div>
+                </div>
+              `,
+                )
+                .join("")}
 
-        g.artists.forEach((a) => {
-          const artistBlock = document.createElement("div");
-          artistBlock.className = "artist-block";
+            </div>
+          `,
+            )
+            .join("")}
 
-          const artistName = document.createElement("div");
-          artistName.className = "artist-name";
-          artistName.textContent = a.name;
-          artistBlock.appendChild(artistName);
+        </div>
+      `,
+        )
+        .join("")}
+    </div>
+  </div>
+`,
+     )
+     .join("");
 
-          a.songs.forEach((song) => {
-            const row = document.createElement("div");
-            row.className = "song-row";
-
-            const songTitle = document.createElement("span");
-            songTitle.textContent = "🎵 " + song;
-
-            const actions = document.createElement("div");
-
-            const editBtn = document.createElement("button");
-            editBtn.className = "edit-btn";
-            editBtn.dataset.playlist = pl.name;
-            editBtn.dataset.genre = g.name;
-            editBtn.dataset.artist = a.name;
-            editBtn.dataset.song = song;
-            editBtn.textContent = "✏️";
-
-            const deleteBtn = document.createElement("button");
-            deleteBtn.className = "delete-btn";
-            deleteBtn.dataset.playlist = pl.name;
-            deleteBtn.dataset.genre = g.name;
-            deleteBtn.dataset.artist = a.name;
-            deleteBtn.dataset.song = song;
-            deleteBtn.textContent = "❌";
-
-            actions.append(editBtn, deleteBtn);
-            row.append(songTitle, actions);
-            artistBlock.appendChild(row);
-          });
-
-          genreSection.appendChild(artistBlock);
-        });
-
-        content.appendChild(genreSection);
-      });
-
-      this.listContainer.appendChild(card);
-    });
   }
 }
