@@ -40,5 +40,19 @@ this.view.listContainer.addEventListener("click", (e) => {
   this.view.render(this.model.getPlaylists());
 });
 
+// demo data for easier testing
+// DEMO DATA
+    const demoBtn = document.getElementById("demoBtn");
+    if (demoBtn) {
+      demoBtn.addEventListener("click", () => {
+        this.model.addSong("Träning", "Pop", "The Weeknd", "Blinding Lights");
+        this.model.addSong("Träning", "Pop", "The Weeknd", "Starboy");
+        this.model.addSong("Chill", "Rock", "Coldplay", "Yellow");
+        this.model.addSong("Chill", "Rock", "Coldplay", "Fix You");
+
+        this.view.render(this.model.getPlaylists());
+      });
+    }
+
   }
 }
