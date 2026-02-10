@@ -13,23 +13,13 @@ export default class MusicModel {
   }
 
   addSong(playlistName, genre, artist, song) {
-    let playlist = this.playlists.find((p) => p.name === playlistName);
-    if (!playlist) {
-      playlist = { name: playlistName, genres: [] };
-      this.playlists.push(playlist);
-    }
+    const findOrCreate = (arr, name, key) =>
+      arr.find((o) => o.name === name) ||
+      arr[arr.push({ name, [key]: [] }) - 1];
 
-    let genreObj = playlist.genres.find((g) => g.name === genre);
-    if (!genreObj) {
-      genreObj = { name: genre, artists: [] };
-      playlist.genres.push(genreObj);
-    }
-
-    let artistObj = genreObj.artists.find((a) => a.name === artist);
-    if (!artistObj) {
-      artistObj = { name: artist, songs: [] };
-      genreObj.artists.push(artistObj);
-    }
+    const playlist = findOrCreate(this.playlists, playlistName, "genres");
+    const genreObj = findOrCreate(playlist.genres, genre, "artists");
+    const artistObj = findOrCreate(genreObj.artists, artist, "songs");
 
     artistObj.songs.push(song);
     this.save();
@@ -59,20 +49,19 @@ export default class MusicModel {
     return this.playlists;
   }
   updateSong(playlistName, genre, artist, oldSong, newSong) {
-  const playlist = this.playlists.find(p => p.name === playlistName);
-  if (!playlist) return;
+    const playlist = this.playlists.find((p) => p.name === playlistName);
+    if (!playlist) return;
 
-  const genreObj = playlist.genres.find(g => g.name === genre);
-  if (!genreObj) return;
+    const genreObj = playlist.genres.find((g) => g.name === genre);
+    if (!genreObj) return;
 
-  const artistObj = genreObj.artists.find(a => a.name === artist);
-  if (!artistObj) return;
+    const artistObj = genreObj.artists.find((a) => a.name === artist);
+    if (!artistObj) return;
 
-  const index = artistObj.songs.indexOf(oldSong);
-  if (index === -1) return;
+    const index = artistObj.songs.indexOf(oldSong);
+    if (index === -1) return;
 
-  artistObj.songs[index] = newSong;
-  this.save();
-}
-
+    artistObj.songs[index] = newSong;
+    this.save();
+  }
 }
