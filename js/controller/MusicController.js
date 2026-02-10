@@ -24,20 +24,21 @@ this.form.addEventListener("submit", (e) => {
 });
 //click event delegation for edit and delete buttons
 this.view.listContainer.addEventListener("click", (e) => {
-  const target = e.target;
-  if (target.classList.contains("delete-btn")) {
-    const { playlist, genre, artist, song } = target.dataset; 
+  const btn = e.target.closest("[data-playlist]");
+  if (!btn) return;
+
+  const { playlist, genre, artist, song } = btn.dataset;
+
+  if (btn.classList.contains("delete-btn")) {
     this.model.removeSong(playlist, genre, artist, song);
-    this.view.render(this.model.getPlaylists());
-  } else if (target.classList.contains("edit-btn")) {
-    const { playlist, genre, artist, song } = target.dataset;
-    const newSongName = prompt("Edit song name:", song);
-    if (newSongName !== null && newSongName.trim() !== "") {
-      this.model.updateSong(playlist, genre, artist, song, newSongName.trim());
-      this.view.render(this.model.getPlaylists());
-    }
+  } else if (btn.classList.contains("edit-btn")) {
+    const newSongName = prompt("Edit song name:", song)?.trim();
+    if (!newSongName) return;
+    this.model.updateSong(playlist, genre, artist, song, newSongName);
   }
-}
-);
+
+  this.view.render(this.model.getPlaylists());
+});
+
   }
 }
