@@ -40,7 +40,7 @@ this.view.listContainer.addEventListener("click", (e) => {
   this.view.render(this.model.getPlaylists());
 });
 
-// demo data for easier testing
+
 // DEMO DATA
     const demoBtn = document.getElementById("demoBtn");
     if (demoBtn) {
