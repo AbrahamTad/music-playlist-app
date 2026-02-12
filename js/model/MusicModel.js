@@ -6,6 +6,10 @@ export default class MusicModel {
     } catch {
       this.playlists = [];
     }
+
+    // clean up any duplicates that might exist from previous versions
+    this.removeDuplicates();
+    this.save();
   }
 
   save() {
@@ -21,7 +25,12 @@ export default class MusicModel {
     const genreObj = findOrCreate(playlist.genres, genre, "artists");
     const artistObj = findOrCreate(genreObj.artists, artist, "songs");
 
-    artistObj.songs.push(song);
+    // prevent duplicate songs
+    if (!artistObj.songs.includes(song))
+      if (!artistObj.songs.includes(song)) {
+        artistObj.songs.push(song);
+        this.save();
+      }
     this.save();
   }
 
@@ -48,6 +57,16 @@ export default class MusicModel {
   getPlaylists() {
     return this.playlists;
   }
+  removeDuplicates() {
+    this.playlists.forEach((playlist) => {
+      playlist.genres.forEach((genre) => {
+        genre.artists.forEach((artist) => {
+          artist.songs = [...new Set(artist.songs)];
+        });
+      });
+    });
+  }
+
   updateSong(playlistName, genre, artist, oldSong, newSong) {
     const playlist = this.playlists.find((p) => p.name === playlistName);
     if (!playlist) return;
@@ -57,6 +76,9 @@ export default class MusicModel {
 
     const artistObj = genreObj.artists.find((a) => a.name === artist);
     if (!artistObj) return;
+
+    //  stop duplicate rename
+    if (artistObj.songs.includes(newSong)) return;
 
     const index = artistObj.songs.indexOf(oldSong);
     if (index === -1) return;
