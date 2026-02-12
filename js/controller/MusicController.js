@@ -3,45 +3,66 @@ export default class MusicController {
     this.model = model;
     this.view = view;
 
-    //  render existing playlists when app starts
     this.view.render(this.model.getPlaylists());
 
+    // FORM
     this.form = document.getElementById("playlistForm");
-    // ADD SONG
-this.form.addEventListener("submit", (e) => {
-  e.preventDefault();
+    if (this.form) {
+      this.form.addEventListener("submit", (e) => {
+        e.preventDefault();
 
-  // get values + trim spaces
-  const name = document.getElementById("playlistName").value.trim();
-  const genre = document.getElementById("genre").value.trim();
-  const artist = document.getElementById("artist").value.trim();
-  const song = document.getElementById("song").value.trim();
+        const name = document.getElementById("playlistName").value.trim();
+        const genre = document.getElementById("genre").value.trim();
+        const artist = document.getElementById("artist").value.trim();
+        const song = document.getElementById("song").value.trim();
 
-   this.model.addSong(name, genre, artist, song);
-   this.view.render(this.model.getPlaylists());
-   this.form.reset();
-  
-});
-//click event delegation for edit and delete buttons
-this.view.listContainer.addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-playlist]");
-  if (!btn) return;
+        if (!name || !genre || !artist || !song) return;
 
-  const { playlist, genre, artist, song } = btn.dataset;
+        this.model.addSong(name, genre, artist, song);
+        this.view.render(this.model.getPlaylists());
+        this.form.reset();
+      });
+    }
 
-  if (btn.classList.contains("delete-btn")) {
-    this.model.removeSong(playlist, genre, artist, song);
-  } else if (btn.classList.contains("edit-btn")) {
-    const newSongName = prompt("Edit song name:", song)?.trim();
-    if (!newSongName) return;
-    this.model.updateSong(playlist, genre, artist, song, newSongName);
-  }
+    // CLICK EVENTS
+    this.view.listContainer.addEventListener("click", (e) => {
+      const isActionBtn = e.target.closest("[data-playlist]");
+      const header = e.target.closest(".clickable");
 
-  this.view.render(this.model.getPlaylists());
-});
+      // COLLAPSE
+      if (header && !isActionBtn) {
+        const card = header.closest(".playlist-card");
+        const content = card?.querySelector(".playlist-content");
 
+        if (content) {
+          content.classList.toggle("hidden");
+          header.classList.toggle("open");
+        }
+        return;
+      }
 
-// DEMO DATA
+      if (!isActionBtn) return;
+
+      const { playlist, genre, artist, song } = isActionBtn.dataset;
+
+      if (isActionBtn.classList.contains("delete-btn")) {
+        this.model.removeSong(playlist, genre, artist, song);
+      } else if (isActionBtn.classList.contains("edit-btn")) {
+        const newSongName = prompt("Edit song name:", song);
+        if (newSongName === null || !newSongName.trim()) return;
+        this.model.updateSong(
+          playlist,
+          genre,
+          artist,
+          song,
+          newSongName.trim(),
+        );
+      }
+
+      this.view.render(this.model.getPlaylists());
+    });
+
+    // DEMO DATA
     const demoBtn = document.getElementById("demoBtn");
     if (demoBtn) {
       demoBtn.addEventListener("click", () => {
@@ -49,10 +70,8 @@ this.view.listContainer.addEventListener("click", (e) => {
         this.model.addSong("Träning", "Pop", "The Weeknd", "Starboy");
         this.model.addSong("Chill", "Rock", "Coldplay", "Yellow");
         this.model.addSong("Chill", "Rock", "Coldplay", "Fix You");
-
         this.view.render(this.model.getPlaylists());
       });
     }
-
   }
 }

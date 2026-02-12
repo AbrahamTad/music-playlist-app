@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 
-
+/* ===== BACKGROUND ===== */
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
   margin: 0;
@@ -17,7 +17,7 @@ body {
   min-height: 100vh;
 }
 
-/* PAGE WIDTH FIX */
+/* PAGE WIDTH */
 .page {
   max-width: 1200px;
   margin: auto;
@@ -47,7 +47,7 @@ body {
   gap: 30px;
 }
 
-/* ===== GLASS CARDS (DARK GLASS) ===== */
+/* ===== GLASS CARDS ===== */
 .card {
   background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(14px);
@@ -56,7 +56,6 @@ body {
   padding: 30px;
   border-radius: 20px;
   min-height: 450px;
-  min-width: 0;
 
   border: 1px solid rgba(255,255,255,0.08);
 
@@ -79,7 +78,7 @@ form label {
   color: #cbd5e1;
 }
 
-/* ===== MODERN INPUTS (DARK) ===== */
+/* INPUTS */
 input {
   width: 100%;
   padding: 12px;
@@ -127,7 +126,6 @@ input:focus {
   cursor: pointer;
 }
 
-/* hover effect */
 button {
   transition: 0.2s;
 }
@@ -137,7 +135,7 @@ button:hover {
   filter: brightness(1.08);
 }
 
-/* PLAYLIST DISPLAY */
+/* PLAYLIST AREA */
 #playlistContainer {
   min-height: 200px;
   padding-top: 10px;
@@ -146,7 +144,6 @@ button:hover {
   gap: 18px;
 }
 
-/* empty state */
 .empty {
   opacity: 0.6;
   text-align: center;
@@ -154,7 +151,7 @@ button:hover {
   color: #94a3b8;
 }
 
-/* ==== PLAYLIST CARD ==== */
+/* PLAYLIST CARD */
 .playlist-card {
   background: rgba(15,23,42,0.9);
   border-radius: 16px;
@@ -174,7 +171,7 @@ button:hover {
   color: white;
 }
 
-/* genre badge */
+/* GENRE */
 .genre-badge {
   display: inline-block;
   background: rgba(34,197,94,0.2);
@@ -185,14 +182,14 @@ button:hover {
   margin: 10px 0;
 }
 
-/* artist */
+/* ARTIST */
 .artist-name {
   font-style: italic;
   margin: 6px 0;
   color: #94a3b8;
 }
 
-/* song row */
+/* SONG ROW */
 .song-row {
   display: flex;
   justify-content: space-between;
@@ -208,7 +205,7 @@ button:hover {
   background: rgba(34,197,94,0.15);
 }
 
-/* buttons */
+/* ACTION BUTTONS */
 .song-actions button {
   border: none;
   padding: 5px 10px;
@@ -217,33 +214,27 @@ button:hover {
   margin-left: 6px;
 }
 
-.edit-btn {
-  background: #facc15;
-}
+.edit-btn { background: #facc15; }
+.delete-btn { background: #ef4444; color: white; }
 
-.delete-btn {
-  background: #ef4444;
-  color: white;
-}
-
-/* collapse feature */
-.clickable {
-  cursor: pointer;
-  user-select: none;
-}
+/* COLLAPSE */
+.playlist-header { cursor: pointer; }
 
 .playlist-content {
+  max-height: 1000px;
+  opacity: 1;
   overflow: hidden;
-  transition: 0.25s ease;
+  transition: max-height 0.25s ease, opacity 0.25s ease;
 }
 
-.hidden {
-  display: none;
+.playlist-content.hidden {
+  max-height: 0;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
 }
 
 /* MOBILE */
 @media (max-width: 900px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
+  .layout { grid-template-columns: 1fr; }
 }

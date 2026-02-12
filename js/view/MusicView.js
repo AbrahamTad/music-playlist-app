@@ -19,8 +19,11 @@ export default class MusicView {
    this.listContainer.innerHTML = playlists
      .map(
        (pl) => `
-  <div class="playlist-card">
-    <h3 class="playlist-title clickable">▼ ${pl.name}</h3>
+<div class="playlist-card">
+  <div class="playlist-header clickable">
+    <h3 class="playlist-title">▼ ${pl.name}</h3>
+  </div>
+    
 
     <div class="playlist-content">
       ${pl.genres
